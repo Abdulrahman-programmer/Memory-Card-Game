@@ -1,0 +1,276 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    height: 100vh;
+}
+#instruction {
+    position: absolute;
+    height: 80%;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.829);
+    border-radius: 25px;
+    color: rgb(28, 188, 0);
+    z-index: 1;
+    transition: all 1s ease-in-out;
+  
+
+}
+
+#Name_input {
+    margin-top: 3%;
+    justify-self: center;
+}
+
+label {
+    font-size: larger;
+
+}
+
+#level_op {
+    margin-top: 1%;
+    justify-self: center;
+}
+
+h1 {
+    padding: 2%;
+    text-align: center;
+}
+
+ol {
+    padding: 2%;
+    margin-left: 3%;
+}
+
+li {
+    margin-top: 1%;
+    color: whitesmoke;
+    font-size: larger;
+}
+
+button {
+    position: absolute;
+    top: 80%;
+    left: 42%;
+    height: 10%;
+    width: 15%;
+    background-color: rgba(28, 188, 0, 0.718);
+    color: aliceblue;
+    font-size: larger;
+    border-radius: 10px;
+    border: none;
+}
+#small_nav {
+    display: none;
+    justify-content: space-between;
+    font-size: x-large;
+    padding-top: 1%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+}
+
+nav {
+    background-color: rgb(24, 168, 235);
+    height: 10vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    text-align: center;
+    font-size: x-large;
+    color: aliceblue;
+
+}
+
+nav div {
+    display: flex;
+}
+
+#score_board {
+    justify-content: end;
+    margin-right: 8%;
+
+
+}
+
+#high_score {
+    margin-left: 8%;
+}
+
+#Level_board {
+    justify-content: center;
+}
+
+#container {
+    height: 500px;
+    width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.603);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#wrapper {
+    height: 90%;
+    width: 90%;
+    display: grid;
+}
+
+.box {
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.603);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.front_side,
+.back_side {
+    object-fit: contain;
+    height: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-style: preserve-3d;
+    transition: opacity 0.5s ease-in-out;
+    transform: translate(-50%, -50%);
+}
+
+.front_side {
+    opacity: 1;
+    width: 80%;
+
+}
+
+.back_side {
+    opacity: 0;
+    top: 10%;
+    left: 30%;
+    transform: rotateY(180deg);
+}
+#end-page {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    height: 50%;
+    width: 50%;
+    background-color: rgba(68, 64, 64, 0.707);
+    border-radius: 10px;
+    display: none;
+}
+
+#play-again-btn {
+    position: relative;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+}
+
+#end-content {
+    color: aliceblue;
+    height: 15%;
+    padding-top: 10%;
+    text-align: center;
+}
+#end-score{
+    padding-top: 3%;
+}
+
+.easy-level {
+    margin-left: 5%;
+    margin-top: 3%;
+    grid-template-columns: repeat(4, 23.3%);
+    grid-template-rows: repeat(2, 46.6%);
+    row-gap: 10px;
+    column-gap: 10px;
+
+}
+
+.medium-level {
+    margin-left: 5%;
+    margin-top: 5%;
+    grid-template-columns: repeat(4, 23.3%);
+    grid-template-rows: repeat(4, 23.3%);
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+.hard-level {
+    margin-left: 5%;
+    margin-top: 5%;
+    grid-template-columns: repeat(6, 15%);
+    grid-template-rows: repeat(6, 15%);
+    row-gap: 10px;
+    column-gap: 10px;
+
+}
+.matched {
+    pointer-events: none;
+}
+
+.flip {
+    transform: rotateY(180deg);
+
+    .front_side {
+        opacity: 0;
+    }
+
+    .back_side {
+        opacity: 1;
+        transform: rotateY(180deg);
+    }
+}
+
+.unflip {
+    .front_side {
+        opacity: 1;
+     
+    }
+
+    .back_side {
+        opacity: 0;
+    }
+}
+
+.reduce{
+    opacity: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    nav {
+        padding-top: 30px;
+    }
+
+    button {
+        width: 30%;
+        height: 5%;
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    ol {
+        margin-left: 5%;
+    }
+
+    h1 {
+        padding-top: 5%;
+    }
+}
