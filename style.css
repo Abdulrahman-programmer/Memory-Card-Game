@@ -4,9 +4,11 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-body{
+
+body {
     height: 100vh;
 }
+
 #instruction {
     position: absolute;
     height: 80%;
@@ -19,7 +21,7 @@ body{
     color: rgb(28, 188, 0);
     z-index: 1;
     transition: all 1s ease-in-out;
-  
+
 
 }
 
@@ -66,6 +68,7 @@ button {
     border-radius: 10px;
     border: none;
 }
+
 #small_nav {
     display: none;
     justify-content: space-between;
@@ -112,7 +115,7 @@ nav div {
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.603);
     position: absolute;
-    top: 50%;
+    top: 51%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -157,6 +160,7 @@ nav div {
     left: 30%;
     transform: rotateY(180deg);
 }
+
 #end-page {
     position: fixed;
     top: 50%;
@@ -184,7 +188,8 @@ nav div {
     padding-top: 10%;
     text-align: center;
 }
-#end-score{
+
+#end-score {
     padding-top: 3%;
 }
 
@@ -216,6 +221,7 @@ nav div {
     column-gap: 10px;
 
 }
+
 .matched {
     pointer-events: none;
 }
@@ -236,7 +242,7 @@ nav div {
 .unflip {
     .front_side {
         opacity: 1;
-     
+
     }
 
     .back_side {
@@ -244,7 +250,7 @@ nav div {
     }
 }
 
-.reduce{
+.reduce {
     opacity: 0;
     overflow: hidden;
     visibility: hidden;
@@ -273,4 +279,26 @@ nav div {
     h1 {
         padding-top: 5%;
     }
+
+}
+
+#timer {
+    position: absolute;
+    top: 37.5%;
+    left: 10%;
+    height: 25vh;
+    width: 25vh;
+    background-color: rgba(24, 168, 235, 0.664);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.603);
+    transition: all 0.5s ease;
+}
+
+#seconds {
+    color: aliceblue;
+    font-size: 600%;
+    font-weight: 400;
 }
