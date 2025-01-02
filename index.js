@@ -12,6 +12,9 @@ const small_score = document.getElementById("small_score")
 const best_score_display = document.getElementById("best_score");
 const play_again = document.getElementById("play-again-btn")
 const end_page = document.getElementById("end-page")
+const seconds = document.getElementById("seconds")
+const time_display = document.getElementById("timer")
+let countdown = 9;
 let width = window.innerWidth;
 let score = 0;
 let High_score = -999;
@@ -66,7 +69,7 @@ function displayBestscore(level) {
     else {
         best_score_display.innerHTML = High_score;
     }
-    
+
 }
 
 function images_combination(level) {
@@ -153,22 +156,22 @@ function shuffleArray(array) {
     }
 }
 
-function set_img(Boxes,images) {
+function set_img(Boxes, images) {
     let i = 0
     shuffleArray(images);
 
-    Boxes.forEach(box =>{
-        box.innerHTML+=images[i];
+    Boxes.forEach(box => {
+        box.innerHTML += images[i];
         i++
     })
-    
+
 }
 
 function setup_level(level) {
     let box = `<div class="box">
             <img src="Img/que_icon.svg" alt="" srcset="" class="back_side">
         </div>`
-        displayBestscore(level);
+    displayBestscore(level);
     level_display.innerHTML = level.toUpperCase();
     wrapper.innerHTML = "";
     wrapper.classList = "";
@@ -185,8 +188,8 @@ function setup_level(level) {
             container.style.height = "200px";
             container.style.width = "400px";
         }
-        
-        
+
+
     } else if (level === "medium") {
 
         for (let i = 0; i < 16; i++) {
@@ -230,12 +233,17 @@ function setup_level(level) {
         end_page.style.width = "450px"
         play_again.style.width = "40%"
         play_again.style.height = "15%"
+        time_display.style.top = "15%"
+        time_display.style.left = "40%"
+        time_display.style.height = "100px"
+        time_display.style.width = "100px"
+        seconds.style.fontSize="400%"
 
     }
     wrapper.innerHTML = content;
 
-    const Boxes =document.querySelectorAll('.box')
-    set_img(Boxes,images_combination(level));
+    const Boxes = document.querySelectorAll('.box')
+    set_img(Boxes, images_combination(level));
     return Boxes;
 
 }
@@ -252,11 +260,11 @@ function toggle_flip(Element) {
 
 function flip_all(Boxes) {
     Boxes.forEach(Element => {
-            toggle_flip(Element);
+        toggle_flip(Element);
     })
 }
 
-function play_game(Boxes,level,Text) {
+function play_game(Boxes, level, Text) {
     Boxes.forEach(Element => {
         Element.addEventListener("click", function () {
             pre_box = current_box;
@@ -267,7 +275,7 @@ function play_game(Boxes,level,Text) {
             const frontSide1 = Element.querySelector('.front_side');
             const backSide1 = Element.querySelector('.back_side');
             if (current_box !== pre_box) {
-                toggle_flip(Element); 
+                toggle_flip(Element);
             }
             if (pre && current_box !== pre_box) {
                 if (current === pre) {
@@ -283,9 +291,9 @@ function play_game(Boxes,level,Text) {
                     setTimeout(() => {
                         toggle_flip(pre_box);
                         toggle_flip(current_box);
-                        current_box ="";
+                        current_box = "";
                     }, 500);
-                    
+
                 }
                 pre = null;
                 current = null;
@@ -295,18 +303,18 @@ function play_game(Boxes,level,Text) {
                 small_nav.innerHTML = `<p id="small_highscore">Best Score: ${High_score}</p>
                                         <p id="small_score">Score :${score}</p>`
             }
-           
+
         })
     })
 }
 
-function run_game(Boxes,level,inputText) {
+function run_game(Boxes, level, inputText) {
     instruction.classList.add('reduce')
     setTimeout(() => {
         flip_all(Boxes);
-        play_game(Boxes,level,inputText);
+        play_game(Boxes, level, inputText);
     }, 10000);
-    
+
 }
 
 setup_level("easy");
@@ -318,28 +326,46 @@ Level_op.addEventListener("change", (event) => {
 Start_btn.addEventListener("click",
     function () {
         let level = Level_op.value;
-        const Boxes= setup_level(level);
+        const Boxes = setup_level(level);
         const inputText = document.getElementById('text_input').value;
-       
+        timer(inputText);
         if (!inputText) {
             alert("Please enter your name to start the game.");
             return;
         }
-      run_game(Boxes,level,inputText);
+        run_game(Boxes, level, inputText);
     }
 )
 
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
-            let level = Level_op.value;
-            const Boxes= setup_level(level);
-            const inputText = document.getElementById('text_input').value;
-           
-            if (!inputText) {
-                alert("Please enter your name to start the game.");
-                return;
-            }
-          run_game(Boxes,level,inputText);
+
+        let level = Level_op.value;
+        const Boxes = setup_level(level);
+        const inputText = document.getElementById('text_input').value;
+        timer(inputText);
+        if (!inputText) {
+            alert("Please enter your name to start the game.");
+            return;
+        }
+        run_game(Boxes, level, inputText);
     }
 });
+
+
+function timer(input) {
+    if (input) {
+        let timerId = setInterval(function () {
+            seconds.innerHTML = countdown;
+            countdown--;
+    
+            if (countdown < 0) {
+                clearInterval(timerId);
+                countdown = 9;
+                time_display.style.display = "none"
+            }
+        }, 1000);
+    }
+  
+}
